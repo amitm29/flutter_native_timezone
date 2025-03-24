@@ -24,7 +24,20 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
+    if (project.android.hasProperty('namespace')) {
+        namespace 'com.whelksoft.flutter_native_timezone'
+    }
+
     compileSdkVersion 30
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -41,9 +54,4 @@ android {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-}
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
 }
